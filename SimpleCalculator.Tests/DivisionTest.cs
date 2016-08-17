@@ -7,8 +7,15 @@ namespace SimpleCalculator.Tests
     public class DivisionTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void DivisionICanCreateAnInstance()
         {
+            // Arrange
+
+            //Act
+            Division func_div = new Division();
+
+            //Assert
+            Assert.IsNotNull(func_div);
         }
     }
 }

@@ -7,8 +7,15 @@ namespace SimpleCalculator.Tests
     public class ConstantsTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void ConstantICanCreateAnInstance()
         {
+            // Arrange
+
+            //Act
+            Constants my_constants = new Constants();
+
+            //Assert
+            Assert.IsNotNull(my_constants);
         }
     }
 }

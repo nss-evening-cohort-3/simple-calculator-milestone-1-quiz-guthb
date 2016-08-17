@@ -7,8 +7,15 @@ namespace SimpleCalculator.Tests
     public class ModulusTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void ModulusICanCreateAnInstance()
         {
+            // Arrange
+
+            //Act
+            Modulus func_modu = new Modulus();
+
+            //Assert
+            Assert.IsNotNull(func_modu);
         }
     }
 }

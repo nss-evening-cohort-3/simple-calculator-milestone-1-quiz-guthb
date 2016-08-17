@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace SimpleCalculator
 {
-    class Stack
+    public class Stack
     {
+        public Stack()
+        {
+
+        }
+
     }
 }

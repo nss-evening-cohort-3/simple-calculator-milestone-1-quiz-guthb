@@ -7,8 +7,15 @@ namespace SimpleCalculator.Tests
     public class ExpressionTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void ExpresssionICanCreateAnInstance()
         {
+            // Arrange
+
+            //Act
+            Expression my_expression = new Expression();
+
+            //Assert
+            Assert.IsNotNull(my_expression);
         }
     }
 }

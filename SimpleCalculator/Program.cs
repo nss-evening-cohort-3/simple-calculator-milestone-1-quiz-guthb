@@ -10,6 +10,14 @@ namespace SimpleCalculator
     {
         static void Main(string[] args)
         {
+            Expression myExpression = new Expression();
+
+            Console.Write("[0]>");
+            Console.Read();
+
+
+            
+
         }
     }
 }

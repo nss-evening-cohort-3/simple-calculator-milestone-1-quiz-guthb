@@ -7,8 +7,16 @@ namespace SimpleCalculator.Tests
     public class AdditionTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void AdditionICanCreateAnInstance()
         {
+            // Arrange
+
+            //Act
+            Addition  func_add = new Addition();
+
+            //Assert
+            Assert.IsNotNull(func_add);
         }
+
     }
 }

@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace SimpleCalculator
 {
-    class Constants
+    public class Constants
     {
+        public Constants()
+        {
+
+        }
     }
 }

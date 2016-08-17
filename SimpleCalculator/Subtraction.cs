@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace SimpleCalculator
 {
-    class Subtraction
+    public class Subtraction
     {
+        public Subtraction()
+        {
+
+        }
     }
 }

@@ -4,13 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SimpleCalculator
+namespace SimpleCalculator.Interfaces
 {
-    public class Evaluate
+    class IExpression
     {
-        public Evaluate()
-        {
 
-        }
     }
 }
