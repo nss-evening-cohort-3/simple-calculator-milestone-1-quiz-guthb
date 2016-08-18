@@ -58,7 +58,15 @@ namespace SimpleCalculator.Tests
             Assert.IsFalse(my_expression.validateEnteredStringCheck(" 1+2"));
             Assert.IsFalse(my_expression.validateEnteredStringCheck("1+2 "));
         }
-        
+
+
+        [TestMethod]
+        public void Expression()
+        {
+
+        }
+
+
 
 
     }

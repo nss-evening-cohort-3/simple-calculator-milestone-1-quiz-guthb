@@ -13,10 +13,12 @@ namespace SimpleCalculator
             Expression myExpression = new Expression();
 
             Console.Write("[0]>");
-            Console.Read();
-
-
-            
+            var userEntered = Console.ReadLine();
+            if (myExpression.validateEnteredStringCheck(userEntered))
+            {
+                myExpression.parseStringEntered(userEntered);
+            }
+            Console.ReadKey();    
 
         }
     }

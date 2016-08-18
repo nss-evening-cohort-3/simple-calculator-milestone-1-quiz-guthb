@@ -57,14 +57,25 @@ namespace SimpleCalculator
         {
             if (validateEnteredStringCheck(enteredExpression))
             {
+
+                Match match = Regex.Match(enteredExpression, userInputRegExPattern);
+                char[] operatorsArray = new char[] { '+', '-', '/', '%', '*' };
+                
+                var termsArray = match.Value.Split(operatorsArray);
+                Console.WriteLine(match.Value);
+                Console.WriteLine(termsArray[0]);
+                Console.WriteLine(termsArray[1]);
+
+                //determining the operator
+                char enteredOperator = operatorsArray.SingleOrDefault(calOperator => match.Value.Contains(calOperator));
+                Console.WriteLine(enteredOperator);
+
+
                 //parsing the first digit
-                userInputBeforeOperator = Convert.ToInt32();
-
-                //parsing the operator
-                userEnteredOperator = Convert.ToChar();
-
+                var userInputBeforeOperator = Convert.ToInt32(termsArray[0]);
+                
                 // parsing the second digit 
-                usertInputAfterOperator = Convert.ToInt32();
+                var usertInputAfterOperator = Convert.ToInt32(termsArray[1]);
 
             }
             else
@@ -73,11 +84,6 @@ namespace SimpleCalculator
 
             }
            
-        
-            
-
-
-
 
         }
 
