@@ -43,8 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Addition.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="Division.cs" />
+    <Compile Include="Evaluate.cs" />
+    <Compile Include="Expression.cs" />
+    <Compile Include="ExpressionException.cs" />
+    <Compile Include="Interfaces\IExpression.cs" />
+    <Compile Include="Modulus.cs" />
+    <Compile Include="Multiplication.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Stack.cs" />
+    <Compile Include="Subtraction.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
