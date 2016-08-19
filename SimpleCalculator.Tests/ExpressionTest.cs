@@ -63,7 +63,7 @@ namespace SimpleCalculator.Tests
 
         [TestMethod]
         //can you validate what was entered was not null
-        public void ExpressionIhaveTwoNonNullEntriesAsValues()
+        public void ExpressionIHaveTwoNonNullEntriesAsValues()
         {
             Expression my_expression = new Expression();
 
@@ -74,7 +74,7 @@ namespace SimpleCalculator.Tests
 
         [TestMethod]
         //can you parse two inputs from the string
-        public void ExpressionCan()
+        public void ExpressionICanParseTwoInputsFromTheString()
         {
             // order of operations + - / % *
             Expression my_expression = new Expression();
@@ -87,20 +87,20 @@ namespace SimpleCalculator.Tests
 
         [TestMethod]
         //can you parse the operator from the string
-        public void Expression()
+        public void ExpressionICanParsetheOperatorFromTheString()
         {
             Expression my_expressionAddOperator = new Expression();
             Expression my_expressionSubOperator = new Expression();
             Expression my_expressionDivOperator = new Expression();
             Expression my_expressionModOperator = new Expression();
             Expression my_expressionMulOperator = new Expression();
-            
 
             my_expressionAddOperator.parseStringEntered("1+2");
             my_expressionSubOperator.parseStringEntered("1-2");
             my_expressionDivOperator.parseStringEntered("1/2");
             my_expressionModOperator.parseStringEntered("1%2");
             my_expressionMulOperator.parseStringEntered("1*2");
+
             Assert.AreEqual('+', my_expressionAddOperator.EnteredOperator);
             Assert.AreEqual('-', my_expressionSubOperator.EnteredOperator);
             Assert.AreEqual('/', my_expressionDivOperator.EnteredOperator);
@@ -109,6 +109,29 @@ namespace SimpleCalculator.Tests
 
         }
 
+        [TestMethod]
+        //can you parse negative 
+        public void ExpressionICanParseNegativeNumbersInTheString()
+        {
+            Expression my_expressionNegaives = new Expression();
+            my_expressionNegaives.parseStringEntered("-1+-2");
+
+            Assert.AreEqual("-1", my_expressionNegaives.EnteredValue_One);
+            Assert.AreEqual("-2", my_expressionNegaives.EnteredValue_Two);
+            Assert.AreEqual('+', my_expressionNegaives.EnteredOperator);
+        }
+
+        [TestMethod]
+        public void ExpressionICanParseLargeNumbersFromTheString()
+        {
+            Expression my_expressionLarge = new Expression();
+
+            my_expressionLarge.parseStringEntered("25+255");
+
+            Assert.AreEqual(25, my_expressionLarge.EnteredValue_One);
+            Assert.AreEqual(255, my_expressionLarge.EnteredValue_Two);
+
+        }
 
 
 
