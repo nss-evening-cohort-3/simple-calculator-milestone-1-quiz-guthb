@@ -30,7 +30,7 @@ namespace SimpleCalculator
 
         //******trying a different way******//
         // inclue full pattern to handles digits operators and future constants entered
-        //Decrations
+        //Declareations
 
         string userInputRegExPattern = @"^(\d*|\w)\s?(\+?\-?\/?\%?\*?)\s?(\d*|\w)$";
         public int EnteredValue_One { get; set; }
@@ -68,38 +68,39 @@ namespace SimpleCalculator
                 char[] operatorsArray = new char[] { '+', '-', '/', '%', '*' };
                 
                 var termsArray = match.Value.Split(operatorsArray);
-               //  Console.WriteLine(match.Value);
+                //  Console.WriteLine(match.Value);
                 // Console.WriteLine(termsArray[0]);
                 // Console.WriteLine(termsArray[1]);
+                try 
+                {
 
-                //determining the operator
-                char enteredOperator = operatorsArray.SingleOrDefault(calOperator => match.Value.Contains(calOperator));
-                // Console.WriteLine(enteredOperator);
-                
-                //parsing the first digit
-                var userInputBeforeOperator = Convert.ToInt32(termsArray[0]);
-                
-                // parsing the second digit 
-                var usertInputAfterOperator = Convert.ToInt32(termsArray[1]);
+                    //determining the operator
+                    char enteredOperator = operatorsArray.SingleOrDefault(calOperator => match.Value.Contains(calOperator));
+                    // Console.WriteLine(enteredOperator);
 
-                //set the values outside the scope
-                EnteredValue_One = userInputBeforeOperator;
-                EnteredValue_Two = usertInputAfterOperator;
-                EnteredOperator = enteredOperator;
+                    //parsing the first digit
+                    var userInputBeforeOperator = Convert.ToInt32(termsArray[0]);
 
+                    // parsing the second digit 
+                    var usertInputAfterOperator = Convert.ToInt32(termsArray[1]);
 
+                    //set the values outside the scope
+                    EnteredValue_One = userInputBeforeOperator;
+                    EnteredValue_Two = usertInputAfterOperator;
+                    EnteredOperator = enteredOperator;
+                }
+                catch (Exception)
+                {
+                    throw new ExpressionException("incomplete string entries.");
+                }
+      
             }
             else
             {
                 //define a new class to be called for the custom exception
                 throw new ExpressionException("Entered string is not allowed.");
-
-
             }
-           
-             
-
-
+    
         }
 
 
