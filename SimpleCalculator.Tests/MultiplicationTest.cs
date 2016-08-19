@@ -7,8 +7,15 @@ namespace SimpleCalculator.Tests
     public class MuliplicationTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void MuliplicationICanCreateAnInstance()
         {
+            // Arrange
+
+            //Act
+            Multiplication func_modu = new Multiplication();
+
+            //Assert
+            Assert.IsNotNull(func_modu);
         }
     }
 }

@@ -7,8 +7,15 @@ namespace SimpleCalculator.Tests
     public class SubtractionTest
     {
         [TestMethod]
-        public void TestMethod1()
+        public void SubtractionICanCreateAnInstance()
         {
+            // Arrange
+
+            //Act
+            Subtraction func_modu = new Subtraction();
+
+            //Assert
+            Assert.IsNotNull(func_modu);
         }
     }
 }
