@@ -92,6 +92,8 @@ namespace SimpleCalculator
             else
             {
                 //define a new class to be called for the custom exception
+                throw new ExpressionException("Entered string is not allowed.");
+
 
             }
            

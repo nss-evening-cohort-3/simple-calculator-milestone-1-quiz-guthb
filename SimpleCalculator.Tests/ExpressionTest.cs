@@ -28,8 +28,7 @@ namespace SimpleCalculator.Tests
             Assert.IsNotNull(my_expression.readExpression("test"));
 
         }
-
-
+        
         [TestMethod]
         //can you parse from a string up to the operator char
         public void ExpressionIcanParseAString()
@@ -59,8 +58,7 @@ namespace SimpleCalculator.Tests
             Assert.IsFalse(my_expression.validateEnteredStringCheck("1+2 "));
             Assert.IsFalse(my_expression.validateEnteredStringCheck("1&2"));
         }
-
-
+  
         [TestMethod]
         //can you validate what was entered was not null
         public void ExpressionIHaveTwoNonNullEntriesAsValues()
@@ -132,8 +130,6 @@ namespace SimpleCalculator.Tests
             Assert.AreEqual(255, my_expressionLarge.EnteredValue_Two);
 
         }
-
-
 
     }
 }

@@ -48,6 +48,7 @@
     <Compile Include="Division.cs" />
     <Compile Include="Evaluate.cs" />
     <Compile Include="Expression.cs" />
+    <Compile Include="ExpressionException.cs" />
     <Compile Include="Interfaces\IExpression.cs" />
     <Compile Include="Modulus.cs" />
     <Compile Include="Program.cs" />
