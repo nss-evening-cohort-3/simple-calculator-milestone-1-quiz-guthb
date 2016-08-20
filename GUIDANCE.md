@@ -24,7 +24,7 @@ Using Test Driven Development, create an **Expression** class that will break do
 
 ### Goal
 
-Using Test Driven Development, create another class (the name is up to you, but must be separate from the class int he first Chuch) that can evaluate a simple 2-term calculator expression, returning the appropriate answer.
+Using Test Driven Development, create another class (the name is up to you, but must be separate from the class int he first Chunk) that can evaluate a simple 2-term calculator expression, returning the appropriate answer.
 
 1. Prove your class can execute the correct operation of a GOOD expression. (If you already have classes for the various math operations, this is easy).
 2. Prove your class can handle a BAD expression.
@@ -38,7 +38,7 @@ Using Test Driven Development, create another class (the name is up to you, but 
 
 ### Goal
 
-Using Test Driven Development, create a **Stack** class that can hold the last evaluated expression (for `lastq`) and the last answer returned (for `last`). Also, modify your class from chunk 2 to appropriatly handle the `last` and `lastq` commands.
+Using Test Driven Development, create a **Stack** class that can hold the last evaluated expression (for `lastq`) and the last answer returned (for `last`). Also, modify your class from chunk 2 to appropriately handle the `last` and `lastq` commands.
 
 1. Ensure your **Stack** class can easily set the `lastq` and `last` (you can name your properties whatever you want)
 2. Prove your class from Chunk 2 can properly handle the `lastq` and `last` commands.
@@ -48,7 +48,7 @@ Using Test Driven Development, create a **Stack** class that can hold the last e
 
 ### Goal
 
-Using Test Driven Development, expand your **Stack** class to handle the storage and retreival of Constants.
+Using Test Driven Development, expand your **Stack** class to handle the storage and retrieval of Constants.
 
 1. Prove that any lowercase letter of the alphabet can be a constant. (e.g. 'a' or 'x'). Constant names are case insensitive.
 2. Prove that your constants can only be defined once per session. Throw an exception otherwise.
