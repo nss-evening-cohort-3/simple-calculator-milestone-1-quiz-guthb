@@ -8,10 +8,20 @@ namespace SimpleCalculator
 {
     public class Stack
     {
-        public Stack()
+        string lastCommand { get; set; }
+        string lastAnswer { get; set; }
+
+        public void updateStack(int valueOne, int valueTwo, char operatorValue)
         {
 
+            Evaluate mybrainhurts = new Evaluate();
+            lastAnswer = mybrainhurts.EvaluateString(valueOne, valueTwo, operatorValue);
+            lastCommand = valueOne.ToString() + operatorValue.ToString() + valueTwo.ToString();
+ 
         }
+
 
     }
 }
+
+

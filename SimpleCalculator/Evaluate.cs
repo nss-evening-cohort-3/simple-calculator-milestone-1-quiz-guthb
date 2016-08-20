@@ -8,6 +8,7 @@ namespace SimpleCalculator
 {
     public class Evaluate
     {
+        public Stack CurrentStack { get; set; }
 
          public string EvaluateString(int EnteredValue_One, int EnteredValue_Two, char EnteredOperator)                                
          {
@@ -33,8 +34,12 @@ namespace SimpleCalculator
                  default:
                      throw new ExpressionException("Evaluate Process Failed.");
               }
-             return answer.ToString();
+
+            CurrentStack.updateStack(EnteredValue_One, EnteredValue_Two, EnteredOperator);
+            return answer.ToString();
          }
+
+
 
     }
 }

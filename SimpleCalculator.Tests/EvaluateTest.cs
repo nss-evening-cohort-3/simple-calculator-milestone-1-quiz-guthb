@@ -25,6 +25,9 @@ namespace SimpleCalculator.Tests
         {
 
             Evaluate my_eval = new Evaluate();
+            Stack new_stack = new Stack();
+
+            my_eval.CurrentStack = new_stack;
 
             Assert.AreEqual("3", my_eval.EvaluateString(1, 2, '+'));
             Assert.AreEqual("-1", my_eval.EvaluateString(1, 2, '-'));

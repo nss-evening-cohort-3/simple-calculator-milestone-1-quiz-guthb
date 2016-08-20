@@ -7,15 +7,25 @@ namespace SimpleCalculator.Tests
     public class StackTest
     {
         [TestMethod]
+        //can i create a class
         public void StackICanCreateAnInstance()
         {
             // Arrange
 
             //Act
-            Stack func_modu = new Stack();
+            Stack func_stack = new Stack();
 
             //Assert
-            Assert.IsNotNull(func_modu);
+            Assert.IsNotNull(func_stack);
         }
+
+        [TestMethod]
+        public void MyTestMethod()
+        {
+
+        }
+        
+
+
     }
 }

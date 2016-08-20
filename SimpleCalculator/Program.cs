@@ -11,6 +11,7 @@ namespace SimpleCalculator
         static void Main(string[] args)
         {
             Expression myExpression = new Expression();
+            Stack myStack = new Stack();
 
             Console.Write("[0]>");
             var userEntered = Console.ReadLine();
