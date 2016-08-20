@@ -8,17 +8,23 @@ namespace SimpleCalculator
 {
     public class Stack
     {
-        string lastCommand { get; set; }
-        string lastAnswer { get; set; }
 
-        public void updateStack(int valueOne, int valueTwo, char operatorValue)
+        //properties
+        public string lastCommand { get; set; }
+        public string lastAnswer { get; set; }
+
+        //method
+        /*public void updateStack(int valueOne, int valueTwo, char operatorValue)
         {
 
-            Evaluate mybrainhurts = new Evaluate();
-            lastAnswer = mybrainhurts.EvaluateString(valueOne, valueTwo, operatorValue);
+            Evaluate update_stack = new Evaluate();
+
+            lastAnswer = update_stack.EvaluateString(valueOne, valueTwo, operatorValue);
+
             lastCommand = valueOne.ToString() + operatorValue.ToString() + valueTwo.ToString();
  
-        }
+        }*/
+
 
 
     }

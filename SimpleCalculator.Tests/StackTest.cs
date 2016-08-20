@@ -20,8 +20,23 @@ namespace SimpleCalculator.Tests
         }
 
         [TestMethod]
-        public void MyTestMethod()
+        //can i set the capture the answer
+        public void StackICanCaptureAnswer()
+            
         {
+            Stack func_stack = new Stack();
+
+            string test_lastq = "1+2";  //last command
+            string test_last = "3"; //last answer
+
+            //func_stack.updateStack(1, 2, '+');
+            Evaluate eval_stack = new Evaluate();
+            eval_stack.EvaluateString(1,2,'+', func_stack);
+
+            Assert.AreEqual(func_stack.lastCommand, test_lastq);
+            Assert.AreEqual(func_stack.lastAnswer, test_last);
+
+
 
         }
         

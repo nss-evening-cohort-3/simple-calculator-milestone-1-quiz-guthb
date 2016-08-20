@@ -9,7 +9,8 @@ namespace SimpleCalculator
 {
     public class Expression
     {
-        public Expression()//constructor best practice
+        //constructor
+        public Expression()
         {
 
         }
@@ -42,6 +43,9 @@ namespace SimpleCalculator
         //method for checking valid pattern
         public bool validateEnteredStringCheck(string enteredExpression)
         {
+
+            //may need to add a switch statement here for the quit and exit before the match
+
             Match match = Regex.Match(enteredExpression, userInputRegExPattern);
             if (match.Success)
             {
@@ -58,6 +62,7 @@ namespace SimpleCalculator
         
         // method will check to see string is valid
         // if valid parse the value before the operator, the operator and the last value
+        // store them as
         // if the string is invalid throw execption
         public void parseStringEntered(string enteredExpression)
         {
