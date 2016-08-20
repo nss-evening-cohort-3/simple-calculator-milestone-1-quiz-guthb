@@ -25,12 +25,15 @@ namespace SimpleCalculator.Tests
         {
 
             Evaluate my_eval = new Evaluate();
+            Stack test_stack = new Stack();
 
-            Assert.AreEqual("3", my_eval.EvaluateString(1, 2, '+'));
-            Assert.AreEqual("-1", my_eval.EvaluateString(1, 2, '-'));
-            Assert.AreEqual("0", my_eval.EvaluateString(1, 2, '/'));
-            Assert.AreEqual("1", my_eval.EvaluateString(1, 2, '%'));
-            Assert.AreEqual("2", my_eval.EvaluateString(1, 2, '*'));
+            //my_eval.CurrentStack = new_stack;
+
+            Assert.AreEqual("3", my_eval.EvaluateString(1, 2, '+', test_stack));
+            Assert.AreEqual("-1", my_eval.EvaluateString(1, 2, '-',test_stack));
+            Assert.AreEqual("0", my_eval.EvaluateString(1, 2, '/', test_stack));
+            Assert.AreEqual("1", my_eval.EvaluateString(1, 2, '%', test_stack));
+            Assert.AreEqual("2", my_eval.EvaluateString(1, 2, '*', test_stack));
             
         }
         [TestMethod]
@@ -39,8 +42,9 @@ namespace SimpleCalculator.Tests
         public void EvaluateICanHandleAnInvalidEvaluation()
         {
             Evaluate my_eval = new Evaluate();
+            Stack test_stack = new Stack();
 
-            my_eval.EvaluateString(1, 5, '!');
+            my_eval.EvaluateString(1, 5, '!', test_stack);
         }
 
     }

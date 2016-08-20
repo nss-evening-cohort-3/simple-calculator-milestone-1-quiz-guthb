@@ -107,7 +107,7 @@ namespace SimpleCalculator.Tests
 
         }
 
-        [TestMethod]
+       /*a [TestMethod]
         //can you parse negative 
         public void ExpressionICanParseNegativeNumbersInTheString()
         {
@@ -117,7 +117,7 @@ namespace SimpleCalculator.Tests
             Assert.AreEqual("-1", my_expressionNegaives.EnteredValue_One);
             Assert.AreEqual("-2", my_expressionNegaives.EnteredValue_Two);
             Assert.AreEqual('+', my_expressionNegaives.EnteredOperator);
-        }
+        }*/
 
         [TestMethod]
         public void ExpressionICanParseLargeNumbersFromTheString()
