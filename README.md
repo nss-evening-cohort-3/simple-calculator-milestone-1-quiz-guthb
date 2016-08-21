@@ -1,4 +1,4 @@
-# Simple Interactive Calculator 
+# Simple Interactive Calculator
 
 ## Goal
 
@@ -17,7 +17,7 @@ Create a Console based Calculator in C#.
 Starting your console application should create a prompt that looks like:
 
 ```sh
-[x]> 
+[x]>
 ```
 where `x` is the number of executed commands/expressions during the user's current session. Call this your "counter".
 
@@ -77,7 +77,7 @@ In addition to math expressions, your calculator should accept the following com
 
 ### Constants
 
-For the chosen few, you get the implement the concept of 'constants' in the caluculator. See below for how it should work:
+For the chosen few, you get the implement the concept of 'constants' in the calculator. See below for how it should work:
 
 ```sh
 [0]> x = 3
