@@ -14,7 +14,11 @@ namespace SimpleCalculator
         {
 
         }
-
+        //properties of Expression
+        public int EnteredValue_One { get; set; }
+        public int EnteredValue_Two { get; set; }
+        public char EnteredOperator { get; set; }
+  
         public string readExpression(string enteredExpression)
         {
             string[] termsArray;
@@ -33,11 +37,8 @@ namespace SimpleCalculator
         // inclue full pattern to handles digits operators and future constants entered
         //Declareations
 
-        string userInputRegExPattern = @"^(\d*|\w)\s?(\+?\-?\/?\%?\*?)\s?(\d*|\w)$";
-        public int EnteredValue_One { get; set; }
-        public int EnteredValue_Two { get; set; }
-        public char EnteredOperator { get; set; }
-
+        //string userInputRegExPattern = @"^(\d*|\w)\s?(\+?\-?\/?\%?\*?)\s?(\d*|\w)$";
+        string userInputRegExPattern = @"^((\-?\d+)\s*([\+\-\/\%\*])\s*(\-?\d+))$";
 
         //parsing second attempt
         //method for checking valid pattern
@@ -78,7 +79,6 @@ namespace SimpleCalculator
                 // Console.WriteLine(termsArray[1]);
                 try 
                 {
-
                     //determining the operator
                     char enteredOperator = operatorsArray.SingleOrDefault(calOperator => match.Value.Contains(calOperator));
                     // Console.WriteLine(enteredOperator);

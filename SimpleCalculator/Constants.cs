@@ -8,6 +8,7 @@ namespace SimpleCalculator
 {
     public class Constants
     {
-        
+      
+
     }
 }

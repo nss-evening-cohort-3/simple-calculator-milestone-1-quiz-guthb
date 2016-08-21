@@ -36,8 +36,6 @@ namespace SimpleCalculator.Tests
             Assert.AreEqual(func_stack.lastCommand, test_lastq);
             Assert.AreEqual(func_stack.lastAnswer, test_last);
 
-
-
         }
         
 
