@@ -13,14 +13,15 @@ namespace SimpleCalculator
             Expression myExpression = new Expression();
             Stack myStack = new Stack();
             Evaluate myEvaluate = new Evaluate();
-            
+            int operation_counter = 0;
+
             //Repeats until user quits.
             bool running = true;
             while (running)
             {
-                Console.Write("[0]>");
+                Console.Write("["+operation_counter.ToString()+"]>");
                 var userEntered = Console.ReadLine();
-
+                
 
                 //check input for 
                 switch (userEntered)
@@ -57,11 +58,11 @@ namespace SimpleCalculator
                         break;
                      }
 
-
+                operation_counter ++;
 
 
                 //string commandInput = Console.ReadLine();
-                
+
 
                 if (myExpression.validateEnteredStringCheck(userEntered))
                 {
