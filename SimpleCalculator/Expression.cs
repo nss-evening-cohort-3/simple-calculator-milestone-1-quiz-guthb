@@ -15,18 +15,18 @@ namespace SimpleCalculator
 
         }
         //properties of Expression
-        public int EnteredValue_One { get; set; }
-        public int EnteredValue_Two { get; set; }
+        public object EnteredValue_One { get; set; }
+        public object EnteredValue_Two { get; set; }
         public char EnteredOperator { get; set; }
   
         public string readExpression(string enteredExpression)
         {
             string[] termsArray;
-            char[] operatorsArray = new char[] { '+', '-', '/', '%', '*' };
+            char[] operatorsArray = new char[] { '+', '-', '/', '%', '*', '=' };
 
             termsArray = enteredExpression.Split(operatorsArray);
 
-            var operatorValues = Regex.Matches(enteredExpression, @"/+|/-|/\|/%|/*");
+            var operatorValues = Regex.Matches(enteredExpression, @"/+|/-|/\|/%|/*|/=");
            
             return termsArray[0];
 
@@ -39,26 +39,28 @@ namespace SimpleCalculator
 
         //string userInputRegExPattern = @"^(\d*|\w)\s?(\+?\-?\/?\%?\*?)\s?(\d*|\w)$";
         string userInputRegExPattern = @"^((\-?\d+)\s*([\+\-\/\%\*])\s*(\-?\d+))$";
+        string constantString = @"^(\s*([A-Za-z])\s*[=]\s*(\-?\d+)\s*)$";
 
         //parsing second attempt
         //method for checking valid pattern
         public bool validateEnteredStringCheck(string enteredExpression)
         {
-
+            bool returnValue = false;
             //may need to add a switch statement here for the quit and exit before the match
 
             Match match = Regex.Match(enteredExpression, userInputRegExPattern);
             if (match.Success)
             {
                 // Handle match here...
-                return true;
+                returnValue = true;
+                return returnValue;
             }
-            else
+            match = Regex.Match(enteredExpression, constantString);
+            if (match.Success)
             {
-                // Handle no match here...
-                return false;   
-            }    
-            
+                returnValue = true;
+            }
+            return returnValue; 
         }
         
         // method will check to see string is valid
@@ -71,34 +73,53 @@ namespace SimpleCalculator
             {
 
                 Match match = Regex.Match(enteredExpression, userInputRegExPattern);
-                char[] operatorsArray = new char[] { '+', '-', '/', '%', '*' };
-                
-                var termsArray = match.Value.Split(operatorsArray);
-                //  Console.WriteLine(match.Value);
-                // Console.WriteLine(termsArray[0]);
-                // Console.WriteLine(termsArray[1]);
-                try 
+                char[] operatorsArray = new char[] { '+', '-', '/', '%', '*'};
+
+                if (match.Success)
                 {
-                    //determining the operator
-                    char enteredOperator = operatorsArray.SingleOrDefault(calOperator => match.Value.Contains(calOperator));
-                    // Console.WriteLine(enteredOperator);
+                    var termsArray = match.Value.Split(operatorsArray);
+                    try
+                    {
+                        //determining the operator
+                        char enteredOperator = operatorsArray.SingleOrDefault(calOperator => match.Value.Contains(calOperator));
+                        // Console.WriteLine(enteredOperator);
 
-                    //parsing the first digit
-                    var userInputBeforeOperator = Convert.ToInt32(termsArray[0]);
+                        //parsing the first digit
+                        var userInputBeforeOperator = Convert.ToInt32(termsArray[0]);
 
-                    // parsing the second digit 
-                    var usertInputAfterOperator = Convert.ToInt32(termsArray[1]);
+                        // parsing the second digit 
+                        var usertInputAfterOperator = Convert.ToInt32(termsArray[1]);
 
-                    //set the values outside the scope
-                    EnteredValue_One = userInputBeforeOperator;
-                    EnteredValue_Two = usertInputAfterOperator;
-                    EnteredOperator = enteredOperator;
+                        //set the values outside the scope
+                        EnteredValue_One = userInputBeforeOperator;
+                        EnteredValue_Two = usertInputAfterOperator;
+                        EnteredOperator = enteredOperator;
+                    }
+                    catch (Exception)
+                    {
+                        throw new ExpressionException("incomplete string entries.");
+                    }
                 }
-                catch (Exception)
+                match = Regex.Match(enteredExpression, constantString);
+                if (match.Success)             
                 {
-                    throw new ExpressionException("incomplete string entries.");
+                    var constantArray = match.Value.Split('=');
+                    try
+                    {
+                        char enteredOperator = '=';
+                        var userInputBeforeOperator = (constantArray[0]);
+                        var userInputAfterOperator = (constantArray[1]);
+                        EnteredValue_One = userInputBeforeOperator;
+                        EnteredValue_Two = userInputAfterOperator;
+                        EnteredOperator = enteredOperator;
+
+                    }
+                    catch(Exception)
+                    {
+                        throw new ExpressionException("something was entered incorrectly.");
+                    }
                 }
-      
+
             }
             else
             {

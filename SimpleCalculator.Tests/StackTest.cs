@@ -37,7 +37,34 @@ namespace SimpleCalculator.Tests
             Assert.AreEqual(func_stack.lastAnswer, test_last);
 
         }
-        
+
+
+        [TestMethod]
+        //can set set the dictionary for constants
+        public void StackDictionaryEntry()
+                       
+        {
+           Stack func_stack = new Stack();
+
+           string test_stack_digit = "1";
+           char test_stack_alpha= 'y';
+
+
+           func_stack.constantDictionary.Add(test_stack_alpha.ToString(), Convert.ToInt32(test_stack_digit));
+         
+
+            Assert.AreEqual(true, func_stack.constantDictionary.ContainsValue(1));
+            Assert.AreEqual(true, func_stack.constantDictionary.ContainsKey("y"));
+
+        }
+
+
+        [TestMethod]
+        //can validate if entry exists in dictionary
+        public void StackDictionaryRetreval()
+        {
+
+        }
 
 
     }
