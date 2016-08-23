@@ -10,27 +10,27 @@ namespace SimpleCalculator
     public class Expression
     {
         //constructor
-        public Expression()
+        public Expression(Stack myStack)
         {
-
+            my_Stack = myStack;
         }
         //properties of Expression
-        public int EnteredValue_One { get; set; }
-        public int EnteredValue_Two { get; set; }
+        public object EnteredValue_One { get; set; }
+        public object EnteredValue_Two { get; set; }
         public char EnteredOperator { get; set; }
-  
+        public Stack my_Stack { get; set; }
+
         public string readExpression(string enteredExpression)
         {
             string[] termsArray;
-            char[] operatorsArray = new char[] { '+', '-', '/', '%', '*' };
+            char[] operatorsArray = new char[] { '+', '-', '/', '%', '*', '=' };
 
             termsArray = enteredExpression.Split(operatorsArray);
 
-            var operatorValues = Regex.Matches(enteredExpression, @"/+|/-|/\|/%|/*");
+            var operatorValues = Regex.Matches(enteredExpression, @"/+|/-|/\|/%|/*|/=");
            
             return termsArray[0];
 
-            //got to this point but do not understand how to us IEnumerable<>to capture array of values and operators
         }
 
         //******trying a different way******//
@@ -39,66 +39,140 @@ namespace SimpleCalculator
 
         //string userInputRegExPattern = @"^(\d*|\w)\s?(\+?\-?\/?\%?\*?)\s?(\d*|\w)$";
         string userInputRegExPattern = @"^((\-?\d+)\s*([\+\-\/\%\*])\s*(\-?\d+))$";
+        string constantString = @"^(\s*([A-Za-z])\s*[=]\s*(\-?\d+)\s*)$";
+        string constantCalcuationPattern = @"^\s*([A-Za-z\-?\d+])\s*([\+\-\/\%\*])\s*([A-Za-z\-?\d+])$";
 
-        //parsing second attempt
-        //method for checking valid pattern
+
+        
+        //method for checking valid pattern and setting a flag
         public bool validateEnteredStringCheck(string enteredExpression)
         {
-
-            //may need to add a switch statement here for the quit and exit before the match
-
+            bool returnValue = false;
+            
+            //if we have a match on first attempt return the value for interagation 
             Match match = Regex.Match(enteredExpression, userInputRegExPattern);
             if (match.Success)
             {
                 // Handle match here...
-                return true;
+                returnValue = true;
+                return returnValue;
             }
-            else
+            //Check for string entered to set a constant
+            match = Regex.Match(enteredExpression, constantString);
+            if (match.Success)
             {
-                // Handle no match here...
-                return false;   
-            }    
+                returnValue = true;
+            }
             
+            //Check for constant arithmetic string
+            match = Regex.Match(enteredExpression, constantCalcuationPattern);
+            if (match.Success)
+            {
+                returnValue = true;
+
+            }
+            return returnValue;
+
+
+
+
         }
         
-        // method will check to see string is valid
-        // if valid parse the value before the operator, the operator and the last value
-        // store them as
+        // method will parse string if valid
+        // parse the value before the operator, the operator and the last value
+        // store them 
         // if the string is invalid throw execption
         public void parseStringEntered(string enteredExpression)
         {
             if (validateEnteredStringCheck(enteredExpression))
             {
-
+                //pull out the operator passed in
                 Match match = Regex.Match(enteredExpression, userInputRegExPattern);
-                char[] operatorsArray = new char[] { '+', '-', '/', '%', '*' };
-                
-                var termsArray = match.Value.Split(operatorsArray);
-                //  Console.WriteLine(match.Value);
-                // Console.WriteLine(termsArray[0]);
-                // Console.WriteLine(termsArray[1]);
-                try 
+                char[] operatorsArray = new char[] { '+', '-', '/', '%', '*'};
+
+                if (match.Success)
                 {
-                    //determining the operator
-                    char enteredOperator = operatorsArray.SingleOrDefault(calOperator => match.Value.Contains(calOperator));
-                    // Console.WriteLine(enteredOperator);
+                    var termsArray = match.Value.Split(operatorsArray);
+                    try
+                    {
+                        //determining the operator
+                        char enteredOperator = operatorsArray.SingleOrDefault(calOperator => match.Value.Contains(calOperator));
 
-                    //parsing the first digit
-                    var userInputBeforeOperator = Convert.ToInt32(termsArray[0]);
-
-                    // parsing the second digit 
-                    var usertInputAfterOperator = Convert.ToInt32(termsArray[1]);
-
-                    //set the values outside the scope
-                    EnteredValue_One = userInputBeforeOperator;
-                    EnteredValue_Two = usertInputAfterOperator;
-                    EnteredOperator = enteredOperator;
+                        //parsing the first digit
+                        //var userInputBeforeOperator = Convert.ToInt32(termsArray[0]);
+                        var userInputBeforeOperator = int.Parse(termsArray[0]);
+                        // parsing the second digit 
+                        //var usertInputAfterOperator = Convert.ToInt32(termsArray[1]);
+                        var usertInputAfterOperator = int.Parse(termsArray[1]);
+                        //set the values outside the scope
+                        EnteredValue_One = userInputBeforeOperator;
+                        EnteredValue_Two = usertInputAfterOperator;
+                        EnteredOperator = enteredOperator;
+                    }
+                    catch (Exception)
+                    {
+                        throw new ExpressionException("incomplete string entries.");
+                    }
                 }
-                catch (Exception)
+                //check for constant match
+                match = Regex.Match(enteredExpression, constantString);
+                if (match.Success)             
+                {
+                    var constantArray = match.Value.Split('=');
+                    try
+                    {
+                        char enteredOperator = '=';
+                        var userInputBeforeOperator = (constantArray[0]);
+                        var userInputAfterOperator = (constantArray[1]);
+                        EnteredValue_One = userInputBeforeOperator;
+                        EnteredValue_Two = userInputAfterOperator;
+                        EnteredOperator = enteredOperator;
+
+                    }
+                    catch(Exception)
+                    {
+                        throw new ExpressionException("something was entered incorrectly.");
+                    }
+                }
+                //check for constant arithmetic
+                match = Regex.Match(enteredExpression, constantCalcuationPattern);
+                if (match.Success)
+                {
+                    var termsArray = match.Value.Split(operatorsArray);
+                    try
+                    { 
+                        //determining the operator
+                        char enteredOperator = operatorsArray.SingleOrDefault(calOperator => match.Value.Contains(calOperator));
+                        int result1;
+                        int result2;
+                        //parsing the first digit
+                        //check if integer or constant
+                        if (!int.TryParse(termsArray[0].Trim(), out result1) && !my_Stack.constantDictionary.TryGetValue(termsArray[0].Trim(), out result1))  //yes   integer?
+                        {
+                            throw new ExpressionException("You did not save a number to the constant in postion one you are attempting to use.");
+                        }
+
+                        var userInputBeforeOperator = result1;                       
+                        //parsing the second digit
+                        //check if integer or constant
+                        if (!int.TryParse(termsArray[1].Trim(), out result2) && !my_Stack.constantDictionary.TryGetValue(termsArray[1].Trim(), out result2))  //yes   integer?
+                        {
+                            throw new ExpressionException("You did not save a number to the constant in position two you are attempting to use.");
+                        }
+
+                        var userInputAfterOperator = result2;
+                    
+                        //set the values outside the scope
+                        EnteredValue_One = userInputBeforeOperator;
+                        EnteredValue_Two = userInputAfterOperator;
+                        EnteredOperator = enteredOperator;
+                    }
+                    catch (Exception)
                 {
                     throw new ExpressionException("incomplete string entries.");
                 }
-      
+            }
+
             }
             else
             {
@@ -107,8 +181,6 @@ namespace SimpleCalculator
             }
     
         }
-
-
         
     }
 }

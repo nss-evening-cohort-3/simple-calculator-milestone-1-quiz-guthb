@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SimpleCalculator
@@ -10,8 +11,8 @@ namespace SimpleCalculator
     {
         static void Main(string[] args)
         {
-            Expression myExpression = new Expression();
             Stack myStack = new Stack();
+            Expression myExpression = new Expression(myStack);
             Evaluate myEvaluate = new Evaluate();
             int operation_counter = 0;
 
@@ -19,7 +20,7 @@ namespace SimpleCalculator
             bool running = true;
             while (running)
             {
-                Console.Write("["+operation_counter.ToString()+"]>");
+                Console.Write("["+operation_counter.ToString()+"]> ");
                 var userEntered = Console.ReadLine();
                 
 
@@ -30,6 +31,7 @@ namespace SimpleCalculator
                     case "exit":
                     {
                         Console.WriteLine("Bye!!");
+                        Thread.Sleep(500);
                         Environment.Exit(0);
                         break;
                     }
@@ -47,7 +49,7 @@ namespace SimpleCalculator
                         if (myExpression.validateEnteredStringCheck(userEntered))
                         {
                             myExpression.parseStringEntered(userEntered);
-                            Console.WriteLine(myEvaluate.EvaluateString(myExpression.EnteredValue_One, myExpression.EnteredValue_Two, myExpression.EnteredOperator, myStack));
+                            Console.WriteLine("   = "+myEvaluate.EvaluateString(myExpression.EnteredValue_One, myExpression.EnteredValue_Two, myExpression.EnteredOperator, myStack));
                         }
                         else
                         {
@@ -61,13 +63,12 @@ namespace SimpleCalculator
                 operation_counter ++;
 
 
-                //string commandInput = Console.ReadLine();
-
-
+                /*string commandInput = Console.ReadLine();
+                
                 if (myExpression.validateEnteredStringCheck(userEntered))
                 {
                     myExpression.parseStringEntered(userEntered);
-                }
+                }*/
 
             }
               Console.ReadKey();    

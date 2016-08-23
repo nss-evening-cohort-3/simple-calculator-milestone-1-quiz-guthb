@@ -56,7 +56,6 @@
     <Compile Include="ExpressionTest.cs" />
     <Compile Include="EvaluateTest.cs" />
     <Compile Include="StackTest.cs" />
-    <Compile Include="ConstantsTest.cs" />
     <Compile Include="ExceptionExpressionTest.cs" />
   </ItemGroup>
   <ItemGroup>
