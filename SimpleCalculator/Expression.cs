@@ -147,17 +147,17 @@ namespace SimpleCalculator
                         int result2;
                         //parsing the first digit
                         //check if integer or constant
-                        if (!int.TryParse(termsArray[0], out result1) && !my_Stack.constantDictionary.TryGetValue(termsArray[0], out result1))  //yes   integer?
+                        if (!int.TryParse(termsArray[0].Trim(), out result1) && !my_Stack.constantDictionary.TryGetValue(termsArray[0].Trim(), out result1))  //yes   integer?
                         {
-                            throw new ExpressionException("You did not save a number to the constant in postion one you are attemptign to use.");
+                            throw new ExpressionException("You did not save a number to the constant in postion one you are attempting to use.");
                         }
 
                         var userInputBeforeOperator = result1;                       
                         //parsing the second digit
                         //check if integer or constant
-                        if (!int.TryParse(termsArray[1], out result2) && !my_Stack.constantDictionary.TryGetValue(termsArray[1], out result2))  //yes   integer?
+                        if (!int.TryParse(termsArray[1].Trim(), out result2) && !my_Stack.constantDictionary.TryGetValue(termsArray[1].Trim(), out result2))  //yes   integer?
                         {
-                            throw new ExpressionException("You did not save a number to the constant in position two you are attemptign to use.");
+                            throw new ExpressionException("You did not save a number to the constant in position two you are attempting to use.");
                         }
 
                         var userInputAfterOperator = result2;

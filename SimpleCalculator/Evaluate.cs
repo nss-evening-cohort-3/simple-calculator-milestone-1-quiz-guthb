@@ -33,7 +33,7 @@ namespace SimpleCalculator
                      break;
                 case '=':
                     //string constValueOne = EnteredValue_One.ToString();
-                    my_stack.constantDictionary.Add(EnteredValue_One.ToString(), Convert.ToInt32(EnteredValue_Two));
+                    my_stack.constantDictionary.Add(EnteredValue_One.ToString().Trim(), Convert.ToInt32(EnteredValue_Two));
                     answer = "saved " + (string)EnteredValue_One + " as " + (string)EnteredValue_Two;
                     break;
                 default:
