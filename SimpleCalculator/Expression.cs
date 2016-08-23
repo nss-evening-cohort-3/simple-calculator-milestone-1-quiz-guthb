@@ -63,7 +63,19 @@ namespace SimpleCalculator
             {
                 returnValue = true;
             }
-            return returnValue; 
+            
+            //Check for constant arithmetic string
+            match = Regex.Match(enteredExpression, constantCalcuationPattern);
+            if (match.Success)
+            {
+                returnValue = true;
+
+            }
+            return returnValue;
+
+
+
+
         }
         
         // method will parse string if valid
