@@ -22,7 +22,7 @@ namespace SimpleCalculator.Tests
         [TestMethod]
         //can i set the capture the answer
         public void StackICanCaptureAnswer()
-            
+
         {
             Stack func_stack = new Stack();
 
@@ -31,7 +31,7 @@ namespace SimpleCalculator.Tests
 
             //func_stack.updateStack(1, 2, '+');
             Evaluate eval_stack = new Evaluate();
-            eval_stack.EvaluateString(1,2,'+', func_stack);
+            eval_stack.EvaluateString(1, 2, '+', func_stack);
 
             Assert.AreEqual(func_stack.lastCommand, test_lastq);
             Assert.AreEqual(func_stack.lastAnswer, test_last);
@@ -40,18 +40,18 @@ namespace SimpleCalculator.Tests
 
 
         [TestMethod]
-        //can set set the dictionary for constants
+        //can set set and value exists the dictionary for constants
         public void StackDictionaryEntry()
-                       
+
         {
-           Stack func_stack = new Stack();
+            Stack func_stack = new Stack();
 
-           string test_stack_digit = "1";
-           char test_stack_alpha= 'y';
+            string test_stack_digit = "1";
+            char test_stack_alpha = 'y';
 
 
-           func_stack.constantDictionary.Add(test_stack_alpha.ToString(), Convert.ToInt32(test_stack_digit));
-         
+            func_stack.constantDictionary.Add(test_stack_alpha.ToString(), Convert.ToInt32(test_stack_digit));
+
 
             Assert.AreEqual(true, func_stack.constantDictionary.ContainsValue(1));
             Assert.AreEqual(true, func_stack.constantDictionary.ContainsKey("y"));
@@ -60,11 +60,28 @@ namespace SimpleCalculator.Tests
 
 
         [TestMethod]
-        //can validate if entry exists in dictionary
+        [ExpectedException(typeof(ArgumentException))]
+        //can validate you can not set another constant to dictionary
         public void StackDictionaryRetreval()
         {
 
+            Stack func_stack = new Stack();
+
+           
+
+            
+                func_stack.constantDictionary.Add("a", 1);
+                func_stack.constantDictionary.Add("b", 2);
+                func_stack.constantDictionary.Add("a", 3);
+
+
+               
+       
+
         }
+
+
+        
 
 
     }

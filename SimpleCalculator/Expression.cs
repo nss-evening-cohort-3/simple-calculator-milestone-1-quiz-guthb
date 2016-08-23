@@ -10,15 +10,16 @@ namespace SimpleCalculator
     public class Expression
     {
         //constructor
-        public Expression()
+        public Expression(Stack myStack)
         {
-
+            my_Stack = myStack;
         }
         //properties of Expression
         public object EnteredValue_One { get; set; }
         public object EnteredValue_Two { get; set; }
         public char EnteredOperator { get; set; }
-  
+        public Stack my_Stack { get; set; }
+
         public string readExpression(string enteredExpression)
         {
             string[] termsArray;
@@ -30,7 +31,6 @@ namespace SimpleCalculator
            
             return termsArray[0];
 
-            //got to this point but do not understand how to us IEnumerable<>to capture array of values and operators
         }
 
         //******trying a different way******//
@@ -40,14 +40,16 @@ namespace SimpleCalculator
         //string userInputRegExPattern = @"^(\d*|\w)\s?(\+?\-?\/?\%?\*?)\s?(\d*|\w)$";
         string userInputRegExPattern = @"^((\-?\d+)\s*([\+\-\/\%\*])\s*(\-?\d+))$";
         string constantString = @"^(\s*([A-Za-z])\s*[=]\s*(\-?\d+)\s*)$";
+        string constantCalcuationPattern = @"^\s*([A-Za-z\-?\d+])\s*([\+\-\/\%\*])\s*([A-Za-z\-?\d+])$";
 
-        //parsing second attempt
-        //method for checking valid pattern
+
+        
+        //method for checking valid pattern and setting a flag
         public bool validateEnteredStringCheck(string enteredExpression)
         {
             bool returnValue = false;
-            //may need to add a switch statement here for the quit and exit before the match
-
+            
+            //if we have a match on first attempt return the value for interagation 
             Match match = Regex.Match(enteredExpression, userInputRegExPattern);
             if (match.Success)
             {
@@ -55,6 +57,7 @@ namespace SimpleCalculator
                 returnValue = true;
                 return returnValue;
             }
+            //Check for string entered to set a constant
             match = Regex.Match(enteredExpression, constantString);
             if (match.Success)
             {
@@ -63,15 +66,15 @@ namespace SimpleCalculator
             return returnValue; 
         }
         
-        // method will check to see string is valid
-        // if valid parse the value before the operator, the operator and the last value
-        // store them as
+        // method will parse string if valid
+        // parse the value before the operator, the operator and the last value
+        // store them 
         // if the string is invalid throw execption
         public void parseStringEntered(string enteredExpression)
         {
             if (validateEnteredStringCheck(enteredExpression))
             {
-
+                //pull out the operator passed in
                 Match match = Regex.Match(enteredExpression, userInputRegExPattern);
                 char[] operatorsArray = new char[] { '+', '-', '/', '%', '*'};
 
@@ -82,8 +85,7 @@ namespace SimpleCalculator
                     {
                         //determining the operator
                         char enteredOperator = operatorsArray.SingleOrDefault(calOperator => match.Value.Contains(calOperator));
-                        // Console.WriteLine(enteredOperator);
-
+                       
                         //parsing the first digit
                         var userInputBeforeOperator = Convert.ToInt32(termsArray[0]);
 
@@ -100,6 +102,7 @@ namespace SimpleCalculator
                         throw new ExpressionException("incomplete string entries.");
                     }
                 }
+                //check for constant match
                 match = Regex.Match(enteredExpression, constantString);
                 if (match.Success)             
                 {
@@ -119,6 +122,44 @@ namespace SimpleCalculator
                         throw new ExpressionException("something was entered incorrectly.");
                     }
                 }
+                //check for constant arithmetic
+                match = Regex.Match(enteredExpression, constantCalcuationPattern);
+                if (match.Success)
+                {
+                    var termsArray = match.Value.Split(operatorsArray);
+                    try
+                    { 
+                        //determining the operator
+                        char enteredOperator = operatorsArray.SingleOrDefault(calOperator => match.Value.Contains(calOperator));
+                        int result1;
+                        int result2;
+                        //parsing the first digit
+                        //check if integer or constant
+                        if (!int.TryParse(termsArray[0], out result1) && !my_Stack.constantDictionary.TryGetValue(termsArray[0], out result1))  //yes   integer?
+                        {
+                            throw new ExpressionException("You did not save a number to the constant in postion one you are attemptign to use.");
+                        }
+
+                        var userInputBeforeOperator = result1;                       
+                        //parsing the second digit
+                        //check if integer or constant
+                        if (!int.TryParse(termsArray[1], out result2) && !my_Stack.constantDictionary.TryGetValue(termsArray[1], out result2))  //yes   integer?
+                        {
+                            throw new ExpressionException("You did not save a number to the constant in position two you are attemptign to use.");
+                        }
+
+                        var userInputAfterOperator = result2;
+                    
+                        //set the values outside the scope
+                        EnteredValue_One = userInputBeforeOperator;
+                        EnteredValue_Two = userInputAfterOperator;
+                        EnteredOperator = enteredOperator;
+                    }
+                    catch (Exception)
+                {
+                    throw new ExpressionException("incomplete string entries.");
+                }
+            }
 
             }
             else
@@ -128,8 +169,6 @@ namespace SimpleCalculator
             }
     
         }
-
-
         
     }
 }

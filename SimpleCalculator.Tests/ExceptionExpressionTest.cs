@@ -6,12 +6,14 @@ namespace SimpleCalculator.Tests
     [TestClass]
     public class ExceptionExpressionTest
     {
+        Stack myStack = new Stack();
+
         [TestMethod]
         //can you generate a custom exception for a invalid string
         [ExpectedException(typeof(ExpressionException))]
         public void invalidStringThrowsExecption()
         {
-            Expression my_expression = new Expression();
+            Expression my_expression = new Expression(myStack);
 
             my_expression.parseStringEntered("?+!");
         }
@@ -21,7 +23,7 @@ namespace SimpleCalculator.Tests
         [ExpectedException(typeof(ExpressionException))]
         public void invalidOperatorThrowsExecption()
         {
-            Expression my_expression = new Expression();
+            Expression my_expression = new Expression(myStack);
 
             my_expression.parseStringEntered("1!2");
         }
@@ -31,7 +33,7 @@ namespace SimpleCalculator.Tests
         [ExpectedException(typeof(ExpressionException))]
         public void incompleteStringThrowsExecption()
         {
-            Expression my_expression = new Expression();
+            Expression my_expression = new Expression(myStack);
 
             my_expression.parseStringEntered("1+");
         }
@@ -41,7 +43,7 @@ namespace SimpleCalculator.Tests
         [ExpectedException(typeof(ExpressionException))]
         public void incompleteString2ThrowsExecption()
         {
-            Expression my_expression = new Expression();
+            Expression my_expression = new Expression(myStack);
 
             my_expression.parseStringEntered(" +2");
         }
@@ -51,7 +53,7 @@ namespace SimpleCalculator.Tests
         [ExpectedException(typeof(ExpressionException))]
         public void incompleteString3ThrowsExecption()
         {
-            Expression my_expression = new Expression();
+            Expression my_expression = new Expression(myStack);
 
             my_expression.parseStringEntered("1");
         }        

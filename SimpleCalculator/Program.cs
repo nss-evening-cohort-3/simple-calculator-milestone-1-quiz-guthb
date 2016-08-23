@@ -11,8 +11,8 @@ namespace SimpleCalculator
     {
         static void Main(string[] args)
         {
-            Expression myExpression = new Expression();
             Stack myStack = new Stack();
+            Expression myExpression = new Expression(myStack);
             Evaluate myEvaluate = new Evaluate();
             int operation_counter = 0;
 
