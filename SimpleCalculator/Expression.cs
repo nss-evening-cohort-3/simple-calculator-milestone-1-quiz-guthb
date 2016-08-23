@@ -97,13 +97,13 @@ namespace SimpleCalculator
                     {
                         //determining the operator
                         char enteredOperator = operatorsArray.SingleOrDefault(calOperator => match.Value.Contains(calOperator));
-                       
+
                         //parsing the first digit
-                        var userInputBeforeOperator = Convert.ToInt32(termsArray[0]);
-
+                        //var userInputBeforeOperator = Convert.ToInt32(termsArray[0]);
+                        var userInputBeforeOperator = int.Parse(termsArray[0]);
                         // parsing the second digit 
-                        var usertInputAfterOperator = Convert.ToInt32(termsArray[1]);
-
+                        //var usertInputAfterOperator = Convert.ToInt32(termsArray[1]);
+                        var usertInputAfterOperator = int.Parse(termsArray[1]);
                         //set the values outside the scope
                         EnteredValue_One = userInputBeforeOperator;
                         EnteredValue_Two = usertInputAfterOperator;
